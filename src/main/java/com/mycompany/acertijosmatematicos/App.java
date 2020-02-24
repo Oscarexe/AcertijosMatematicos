@@ -20,8 +20,7 @@ public class App extends Application {
         
         Cuadrante cuadrante = new Cuadrante();
         Tablero tablero = new Tablero();
-        root.getChildren().add(tablero);
-        tablero.getChildren().add(cuadrante);
+        root.getChildren().add(tablero);        
     }
 
     public static void main(String[] args) {
@@ -29,3 +28,12 @@ public class App extends Application {
     }
 
 }
+
+/* cosas por hacer 
+rellenar el tablero de interrogaciones
+plantear el click sobre los grupos 
+pruebecitas que se presenten 
+cronometro para ver quien gana 
+hacer dos tableros
+parametrizar el tamaño del tablero para poder modificarlo
+*/

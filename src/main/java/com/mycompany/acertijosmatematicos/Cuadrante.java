@@ -16,18 +16,20 @@ import javafx.scene.shape.Rectangle;
  */
 public class Cuadrante extends Group {
     static final short TAM_CUADRANTE= 40;
-    Image interrogacion = new Image(getClass().getResourceAsStream("/Images/interrogacion.png"));
-    ImageView ImgViewInterrogacion  = new ImageView (interrogacion);
-    
-    
-    // r.setarcwidth();
+    Image interrogacion = new Image(getClass().getResourceAsStream("/Images/interrogacion.jpg"));
+    ImageView imgInterrogacion  = new ImageView (interrogacion);
     
     //Metodo Constructor
     public Cuadrante(){
-    Rectangle rectangle = new Rectangle(TAM_CUADRANTE, TAM_CUADRANTE); 
-    
-    this.getChildren().add(rectangle);
-    this.getChildren().add(ImgViewInterrogacion);
+        // Cambiar tamaño img interrogacion
+        imgInterrogacion.setFitWidth (TAM_CUADRANTE);
+        imgInterrogacion.setFitHeight(TAM_CUADRANTE);
+        Rectangle rectangle = new Rectangle(TAM_CUADRANTE, TAM_CUADRANTE); 
+
+        // esta clase esta definida como grupo asi que ponemos this.getChildren() para 
+        // añadir directamente al grupo
+        this.getChildren().add(rectangle);
+        this.getChildren().add(imgInterrogacion);
     }
     
 }
