@@ -14,13 +14,13 @@ import javafx.scene.shape.Rectangle;
  *
  * @author Oscar
  */
-public class Cuadrante extends Group {
+public class Carta extends Group {
     static final short TAM_CUADRANTE= 40;
     Image interrogacion = new Image(getClass().getResourceAsStream("/Images/interrogacion.jpg"));
     ImageView imgInterrogacion  = new ImageView (interrogacion);
     
     //Metodo Constructor
-    public Cuadrante(){
+    public Carta(){
         // Cambiar tamaño img interrogacion
         imgInterrogacion.setFitWidth (TAM_CUADRANTE);
         imgInterrogacion.setFitHeight(TAM_CUADRANTE);

@@ -18,7 +18,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         
-        Cuadrante cuadrante = new Cuadrante();
+        Carta carta = new Carta();
         Tablero tablero = new Tablero();
         root.getChildren().add(tablero);        
     }

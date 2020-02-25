@@ -11,37 +11,40 @@ import javafx.scene.shape.Line;
 public class Tablero extends Pane {
     
     public Tablero(){
-        colocarCuadrante();
+        colocarCarta();
         // lineas Verticales
-        for(int i=0; i<8; i++) {
+        //int 
+        for(int i=0; i<anchoTablero+ 2; i++) {
            // Line line = new Line(Cuadrante.TAM_CUADRANTE, Cuadrante.TAM_CUADRANTE*i, Cuadrante.TAM_CUADRANTE*7, Cuadrante.TAM_CUADRANTE*i);
-            Line line = new Line(Cuadrante.TAM_CUADRANTE*i, Cuadrante.TAM_CUADRANTE, Cuadrante.TAM_CUADRANTE*i, Cuadrante.TAM_CUADRANTE*7);
+            Line line = new Line(Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*altoTablero+2);
            // this.getChildren().add(line);
             this.getChildren().add(line);
             
     
         }
         // lineas Horizontales
-      for(int i=0; i<8; i++) {
-            Line line = new Line(Cuadrante.TAM_CUADRANTE, Cuadrante.TAM_CUADRANTE*i, Cuadrante.TAM_CUADRANTE*7, Cuadrante.TAM_CUADRANTE*i);
+      for(int i=0; i<altoTablero+ 2; i++) {
+            Line line = new Line(Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*altoTablero+2, Carta.TAM_CUADRANTE*i);
             this.getChildren().add(line);
     
         }
     
     }
         
-    
-    private void colocarCuadrante(){
-        for(int i=0; i<6; i++) {
-            for(int e=0; e<6; e++) {
+// Metodo para dibujar el tablero     
+    private void colocarCarta(){
+        for(int i=0; i<altoTablero; i++) {
+            for(int e=0; e<anchoTablero; e++) {
                                                
-                Cuadrante cuadrante = new Cuadrante();
-                cuadrante.setLayoutX(Cuadrante.TAM_CUADRANTE*e+ Cuadrante.TAM_CUADRANTE);
-                cuadrante.setLayoutY(Cuadrante.TAM_CUADRANTE*i+ Cuadrante.TAM_CUADRANTE);
-                this.getChildren().add(cuadrante);
+                Carta carta = new Carta();
+                carta.setLayoutX(Carta.TAM_CUADRANTE*e+ Carta.TAM_CUADRANTE);
+                carta.setLayoutY(Carta.TAM_CUADRANTE*i+ Carta.TAM_CUADRANTE);
+                this.getChildren().add(carta);
             }
         }    
     }
+    int anchoTablero= 6;
+    int altoTablero = 6;
         
 }
 
