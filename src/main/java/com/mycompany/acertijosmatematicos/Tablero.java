@@ -5,6 +5,7 @@
  */
 package com.mycompany.acertijosmatematicos;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
@@ -18,12 +19,21 @@ public class Tablero extends Pane {
            // Line line = new Line(Cuadrante.TAM_CUADRANTE, Cuadrante.TAM_CUADRANTE*i, Cuadrante.TAM_CUADRANTE*7, Cuadrante.TAM_CUADRANTE*i);
             Line line = new Line(Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(altoTablero+1));
            // this.getChildren().add(line);
-            this.getChildren().add(line);
-            
-    
+            this.getChildren().add(line);                           
         }
+        this.setOnMouseClicked((MouseEvent mouseEvent) -> {
+            System.out.println("Mouse clicked X,Y: " +
+                    mouseEvent.getX() + " : " + mouseEvent.getY());
+            int clicX = (int)mouseEvent.getX();
+            int columna = clicX / Carta.TAM_CUADRANTE;
+            int clicY = (int)mouseEvent.getY();
+            int fila = clicY / Carta.TAM_CUADRANTE;
+            System.out.println("Columna: " + columna);
+            System.out.println("Fila: " + fila);
+
+        });
         // lineas Horizontales
-      for(int i=0; i<altoTablero+ 2; i++) {
+      for(int i=1; i<altoTablero+ 2; i++) {
             Line line = new Line(Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(anchoTablero+1), Carta.TAM_CUADRANTE*i);
             this.getChildren().add(line);
     
@@ -44,8 +54,8 @@ public class Tablero extends Pane {
             }
         }    
     }
-    int anchoTablero= 6;
-    int altoTablero = 6;
+    static int anchoTablero= 6;
+    static int altoTablero = 6;
         
 }
 

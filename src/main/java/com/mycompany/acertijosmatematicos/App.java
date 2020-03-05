@@ -20,7 +20,9 @@ public class App extends Application {
         
         Carta carta = new Carta();
         Tablero tablero = new Tablero();
-        root.getChildren().add(tablero);        
+        root.getChildren().add(tablero); 
+        Logica logica = new Logica();
+        logica.mostrarConsola();
     }
 
     public static void main(String[] args) {
