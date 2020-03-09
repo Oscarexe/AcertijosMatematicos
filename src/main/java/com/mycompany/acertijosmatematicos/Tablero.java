@@ -14,7 +14,7 @@ public class Tablero extends Pane {
     public Tablero(){
         colocarCarta();
         // lineas Verticales
-        //int 
+         
         for(int i=0; i<anchoTablero+ 2; i++) {
            // Line line = new Line(Cuadrante.TAM_CUADRANTE, Cuadrante.TAM_CUADRANTE*i, Cuadrante.TAM_CUADRANTE*7, Cuadrante.TAM_CUADRANTE*i);
             Line line = new Line(Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(altoTablero+1));
@@ -54,8 +54,8 @@ public class Tablero extends Pane {
             }
         }    
     }
-    static int anchoTablero= 6;
-    static int altoTablero = 6;
+    static int anchoTablero= 8;
+    static int altoTablero = 8;
         
 }
 
