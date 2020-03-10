@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 
 public class Tablero extends Pane {
+    int fila;
+    int columna;
     
     public Tablero(){
         colocarCarta();
@@ -21,15 +23,19 @@ public class Tablero extends Pane {
            // this.getChildren().add(line);
             this.getChildren().add(line);                           
         }
+        int my;
         this.setOnMouseClicked((MouseEvent mouseEvent) -> {
             System.out.println("Mouse clicked X,Y: " +
                     mouseEvent.getX() + " : " + mouseEvent.getY());
             int clicX = (int)mouseEvent.getX();
-            int columna = clicX / Carta.TAM_CUADRANTE;
+            columna = clicX / Carta.TAM_CUADRANTE;
             int clicY = (int)mouseEvent.getY();
-            int fila = clicY / Carta.TAM_CUADRANTE;
+            fila = clicY / Carta.TAM_CUADRANTE;
             System.out.println("Columna: " + columna);
             System.out.println("Fila: " + fila);
+            //mostrar al ususario una pantalla que muestre la operacion que tiene que realizar cuando pinche en una casilla
+            //gracias a las variables fila/columna cuadricula[fila][columna] TENGO QUE ARREGLAR ESTO
+           System.out.println(Logica.cuadricula[fila][columna]);
 
         });
         // lineas Horizontales
@@ -54,8 +60,8 @@ public class Tablero extends Pane {
             }
         }    
     }
-    static int anchoTablero= 8;
-    static int altoTablero = 8;
+    static int anchoTablero= 5;
+    static int altoTablero = 5;
         
 }
 
