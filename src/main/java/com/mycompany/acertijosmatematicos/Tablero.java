@@ -5,9 +5,12 @@
  */
 package com.mycompany.acertijosmatematicos;
 
+import java.util.Optional;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
+import javafx.stage.StageStyle;
 
 public class Tablero extends Pane {
     int fila;
@@ -24,6 +27,7 @@ public class Tablero extends Pane {
             this.getChildren().add(line);                           
         }
         int my;
+        // hacer que solo se pueda pinchar en la cuadricula
         this.setOnMouseClicked((MouseEvent mouseEvent) -> {
             System.out.println("Mouse clicked X,Y: " +
                     mouseEvent.getX() + " : " + mouseEvent.getY());
@@ -33,9 +37,19 @@ public class Tablero extends Pane {
             fila = clicY / Carta.TAM_CUADRANTE;
             System.out.println("Columna: " + columna);
             System.out.println("Fila: " + fila);
+            
             //mostrar al ususario una pantalla que muestre la operacion que tiene que realizar cuando pinche en una casilla
             //gracias a las variables fila/columna cuadricula[fila][columna] TENGO QUE ARREGLAR ESTO
-           System.out.println(Logica.cuadricula[fila][columna]);
+            String textoPregunta= (Logica.cuadricula[fila-1][columna-1]); //le resto -1 pq empieza en 0
+            System.out.println (textoPregunta);
+            TextInputDialog textoPreguntaDialog = new TextInputDialog();
+            textoPreguntaDialog.setTitle("¡Resuelve el problema!");
+            textoPreguntaDialog.setHeaderText(textoPregunta);
+            textoPreguntaDialog.initStyle(StageStyle.UTILITY);
+            //guardar valor que mete el usuario 
+            Optional <String> respuesta = textoPreguntaDialog.showAndWait();
+            System.out.println(respuesta); 
+            
 
         });
         // lineas Horizontales
@@ -46,7 +60,15 @@ public class Tablero extends Pane {
         }
     
     }
-        
+//String respuesta= String.valueof(respuesta)
+// Metodo para comprobar la respuesta    
+    private void comprobarRespuesta(int columna, int fila, int respuesta){ // no se como poner respuesta si como int o como string
+        //respuesta= Integer.parseInt(respuesta);
+        if (respuesta == (Logica.cuadriculaResp[fila-1][columna-1])){ 
+            System.out.println("acierto");
+        }
+    };
+    
 // Metodo para dibujar el tablero     
     private void colocarCarta(){
         for(int i=0; i<altoTablero; i++) {

@@ -40,4 +40,5 @@ pruebecitas que se presenten
 cronometro para ver quien gana 
 hacer dos tableros
 parametrizar el tamaño del tablero para poder modificarlo
+hacer que no pueda pincharse fuera del tablero haciendo que, ClicY <= tamañoficha * numfilas y ClicX <= tamañoficha * numcolumnas
 */
