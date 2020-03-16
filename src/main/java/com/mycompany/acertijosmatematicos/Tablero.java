@@ -49,7 +49,8 @@ public class Tablero extends Pane {
             //guardar valor que mete el usuario 
             Optional <String> respuesta = textoPreguntaDialog.showAndWait();
             System.out.println(respuesta); 
-            
+         
+            comprobarRespuesta(columna, fila, respuesta));
 
         });
         // lineas Horizontales
@@ -62,9 +63,13 @@ public class Tablero extends Pane {
     }
 //String respuesta= String.valueof(respuesta)
 // Metodo para comprobar la respuesta    
-    private void comprobarRespuesta(int columna, int fila, int respuesta){ // no se como poner respuesta si como int o como string
+    private void comprobarRespuesta(int columna, int fila, Optional <String> respuesta){ // no se como poner respuesta si como int o como string
         //respuesta= Integer.parseInt(respuesta);
-        if (respuesta == (Logica.cuadriculaResp[fila-1][columna-1])){ 
+        if (respuesta.isPresent()){
+                System.out.println("Your name: " + respuesta.get());
+            }
+        String respuestaStr= respuesta.get();
+        if (respuestaStr == String.valueOf(Logica.cuadriculaResp[fila-1][columna-1])){ 
             System.out.println("acierto");
         }
     };
