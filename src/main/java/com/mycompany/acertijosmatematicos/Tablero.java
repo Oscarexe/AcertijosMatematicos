@@ -6,6 +6,8 @@
 package com.mycompany.acertijosmatematicos;
 
 import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -15,6 +17,8 @@ import javafx.stage.StageStyle;
 public class Tablero extends Pane {
     int fila;
     int columna;
+    int contador1;
+    int contador2;
     
     public Tablero(){
         colocarCarta();
@@ -50,7 +54,7 @@ public class Tablero extends Pane {
             Optional <String> respuesta = textoPreguntaDialog.showAndWait();
             System.out.println(respuesta); 
          
-            comprobarRespuesta(columna, fila, respuesta));
+            comprobarRespuesta(columna, fila, respuesta);
 
         });
         // lineas Horizontales
@@ -63,14 +67,23 @@ public class Tablero extends Pane {
     }
 //String respuesta= String.valueof(respuesta)
 // Metodo para comprobar la respuesta    
-    private void comprobarRespuesta(int columna, int fila, Optional <String> respuesta){ // no se como poner respuesta si como int o como string
+    private void comprobarRespuesta(int columna, int fila, Optional <String> respuesta){ 
         //respuesta= Integer.parseInt(respuesta);
         if (respuesta.isPresent()){
-                System.out.println("Your name: " + respuesta.get());
+                System.out.println("Respuesta del Usuario: " + respuesta.get());
             }
+        //Meto en la variable respuestaStr el String de respuesta y luego comparo su int con cuadriculaResp
         String respuestaStr= respuesta.get();
-        if (respuestaStr == String.valueOf(Logica.cuadriculaResp[fila-1][columna-1])){ 
+        System.out.println(respuestaStr);
+        System.out.println(String.valueOf(Logica.cuadriculaResp[fila-1][columna-1]));
+        if (Integer.parseInt(respuestaStr) == Logica.cuadriculaResp[fila-1][columna-1]){ 
             System.out.println("acierto");
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("!Has acertado!");
+
+            alert.showAndWait();
         }
     };
     

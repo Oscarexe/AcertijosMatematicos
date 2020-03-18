@@ -34,11 +34,10 @@ public class App extends Application {
 }
 
 /* cosas por hacer 
-rellenar el tablero de interrogaciones
-plantear el click sobre los grupos 
-pruebecitas que se presenten 
+rellenar el tablero de interrogaciones HECHO
+plantear el click sobre los grupos HECHO
+pruebecitas que se presenten  HECHO
 cronometro para ver quien gana 
-hacer dos tableros
-parametrizar el tamaño del tablero para poder modificarlo
+parametrizar el tamaño del tablero para poder modificarlo HECHO
 hacer que no pueda pincharse fuera del tablero haciendo que, ClicY <= tamañoficha * numfilas y ClicX <= tamañoficha * numcolumnas
 */

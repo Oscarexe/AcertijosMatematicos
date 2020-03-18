@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// creo que esta clase sobra pq esta duplicada en carta
 package com.mycompany.acertijosmatematicos;
 
 import javafx.scene.Group;
