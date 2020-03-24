@@ -6,12 +6,17 @@
 package com.mycompany.acertijosmatematicos;
 
 import java.util.Optional;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.StageStyle;
 
 public class Tablero extends Pane {
@@ -19,6 +24,10 @@ public class Tablero extends Pane {
     int columna;
     int contador1;
     int contador2;
+    static int anchoTablero= 5;
+    static int altoTablero = 5;
+    int TEXT_SIZE = 30;
+        
     
     public Tablero(){
         colocarCarta();
@@ -30,7 +39,7 @@ public class Tablero extends Pane {
            // this.getChildren().add(line);
             this.getChildren().add(line);                           
         }
-        int my;
+        Logica logica = new Logica();
         // hacer que solo se pueda pinchar en la cuadricula
         this.setOnMouseClicked((MouseEvent mouseEvent) -> {
             System.out.println("Mouse clicked X,Y: " +
@@ -43,7 +52,6 @@ public class Tablero extends Pane {
             System.out.println("Fila: " + fila);
             
             //mostrar al ususario una pantalla que muestre la operacion que tiene que realizar cuando pinche en una casilla
-            //gracias a las variables fila/columna cuadricula[fila][columna] TENGO QUE ARREGLAR ESTO
             String textoPregunta= (Logica.cuadricula[fila-1][columna-1]); //le resto -1 pq empieza en 0
             System.out.println (textoPregunta);
             TextInputDialog textoPreguntaDialog = new TextInputDialog();
@@ -53,9 +61,12 @@ public class Tablero extends Pane {
             //guardar valor que mete el usuario 
             Optional <String> respuesta = textoPreguntaDialog.showAndWait();
             System.out.println(respuesta); 
-         
+            
             comprobarRespuesta(columna, fila, respuesta);
-
+            
+            logica.cambiarJugador();
+            System.out.println("Turno del Jugador "+logica.turnoJugador);
+         
         });
         // lineas Horizontales
       for(int i=1; i<altoTablero+ 2; i++) {
@@ -63,7 +74,27 @@ public class Tablero extends Pane {
             this.getChildren().add(line);
     
         }
-    
+     // Panel para mostrar textos (puntuaciones)
+        HBox paneTextScore = new HBox();
+        paneTextScore.setTranslateY(20);            
+        paneTextScore.setMinWidth(logica.puntuacionJ1);
+        paneTextScore.setAlignment(Pos.CENTER);
+        this.getChildren().add(paneTextScore);
+
+        // Texto de etiqueta para la puntuación
+        Text textTitleScore = new Text("Score: ");
+        textTitleScore.setFont(Font.font(TEXT_SIZE));
+        textTitleScore.setFill(Color.WHITE);
+        // Texto para la puntuación
+        Text textScore;
+        textScore = new Text("0");
+        textScore.setFont(Font.font(TEXT_SIZE));
+        textScore.setFill(Color.BLUE);
+
+        // Añadir los textos al panel reservado para ellos 
+        paneTextScore.setSpacing(10);
+        paneTextScore.getChildren().add(textTitleScore);
+        paneTextScore.getChildren().add(textScore);
     }
 //String respuesta= String.valueof(respuesta)
 // Metodo para comprobar la respuesta    
@@ -100,9 +131,6 @@ public class Tablero extends Pane {
             }
         }    
     }
-    static int anchoTablero= 5;
-    static int altoTablero = 5;
-        
 }
 
 

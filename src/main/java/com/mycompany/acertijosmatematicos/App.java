@@ -40,4 +40,5 @@ pruebecitas que se presenten  HECHO
 cronometro para ver quien gana 
 parametrizar el tamaño del tablero para poder modificarlo HECHO
 hacer que no pueda pincharse fuera del tablero haciendo que, ClicY <= tamañoficha * numfilas y ClicX <= tamañoficha * numcolumnas
+cuando se pincha una carta que no pueda pincharse mas 
 */
