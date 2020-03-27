@@ -12,6 +12,7 @@ public class Logica {
     final char JUGADOR_2 = '2';
     int puntuacionJ1= 0;
     int puntuacionJ2= 0;
+    static boolean variableResp;
     // llenar todo de ecuaciones
     // dos matrices una para las preguntas y otra para las respuestas
     //SUMA: CONCATENAR UN ALEATORIO CON OTRO
@@ -55,7 +56,7 @@ public class Logica {
         //cuadricula respuestas
 
     }
-        public void mostrarConsola() {
+        public static void mostrarConsola() {
             for(int f=0; f<Tablero.anchoTablero; f++) {
                 for(int c=0; c<Tablero.altoTablero; c++) {
                     System.out.print(cuadricula[f][c]+ "\t"); // eso es para meterle el espacio de una tabulación
@@ -70,8 +71,22 @@ public class Logica {
             if(turnoJugador == JUGADOR_1) {
                 turnoJugador = JUGADOR_2;
             } else {
-                turnoJugador = JUGADOR_1;
+                    turnoJugador = JUGADOR_1;
+                }
         }
-    }
+
+        public void aumentarScore() {
+            if (turnoJugador== JUGADOR_1 && variableResp == true ){
+                puntuacionJ1+=1;
+                Tablero.textScore.setText(String.valueOf(puntuacionJ1));
+            }
+        }
+        public void aumentarScore2() {
+            if (turnoJugador== JUGADOR_2 && variableResp == true ){
+                 puntuacionJ2+=1;
+                Tablero.textScore2.setText(String.valueOf(puntuacionJ2));
+            }
+        }
 }
 
+// metodo para guardar en la logica si ha acertado o fallado

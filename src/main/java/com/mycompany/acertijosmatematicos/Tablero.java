@@ -28,9 +28,59 @@ public class Tablero extends Pane {
     static int altoTablero = 5;
     int TEXT_SIZE = 30;
         
+    static Text textScore;
+    static Text textScore2;
+    Logica logica = new Logica();
     
-    public Tablero(){
+    public Tablero(){        
         colocarCarta();
+        // Panel para mostrar textos (puntuaciones)
+        HBox paneTextScore = new HBox();
+        paneTextScore.setTranslateY(20);        
+        paneTextScore.setTranslateX(400);                        
+        paneTextScore.setMinWidth(logica.puntuacionJ1);
+        paneTextScore.setAlignment(Pos.CENTER);
+        this.getChildren().add(paneTextScore);
+
+        // Texto de etiqueta para la puntuación
+        Text textTitleScore = new Text("Score Player 1: ");
+        textTitleScore.setFont(Font.font(TEXT_SIZE));
+        textTitleScore.setFill(Color.BLACK);
+        // Texto para la puntuación
+        
+        textScore = new Text(String.valueOf(logica.puntuacionJ1));
+        textScore.setFont(Font.font(TEXT_SIZE));
+        textScore.setFill(Color.BLUE);
+
+        // Añadir los textos al panel reservado para ellos 
+        paneTextScore.setSpacing(10);
+        paneTextScore.getChildren().add(textTitleScore);
+        paneTextScore.getChildren().add(textScore);
+        
+        // Panel para mostrar textos (puntuaciones)
+        HBox paneTextScore2 = new HBox();
+        paneTextScore2.setTranslateY(100);        
+        paneTextScore2.setTranslateX(400);                        
+        paneTextScore2.setMinWidth(logica.puntuacionJ1);
+        paneTextScore2.setAlignment(Pos.CENTER);
+        this.getChildren().add(paneTextScore2);
+
+        // Texto de etiqueta para la puntuación
+        Text textTitleScore2 = new Text("Score Player 2: ");
+        textTitleScore2.setFont(Font.font(TEXT_SIZE));
+        textTitleScore2.setFill(Color.BLACK);
+        // Texto para la puntuación
+        
+        textScore2 = new Text(String.valueOf(logica.puntuacionJ2));
+        textScore2.setFont(Font.font(TEXT_SIZE));
+        textScore2.setFill(Color.BLUE);
+
+        // Añadir los textos al panel reservado para ellos 
+        paneTextScore2.setSpacing(10);
+        paneTextScore2.getChildren().add(textTitleScore2);
+        paneTextScore2.getChildren().add(textScore2);
+        
+        
         // lineas Verticales
          
         for(int i=0; i<anchoTablero+ 2; i++) {
@@ -39,7 +89,7 @@ public class Tablero extends Pane {
            // this.getChildren().add(line);
             this.getChildren().add(line);                           
         }
-        Logica logica = new Logica();
+       
         // hacer que solo se pueda pinchar en la cuadricula
         this.setOnMouseClicked((MouseEvent mouseEvent) -> {
             System.out.println("Mouse clicked X,Y: " +
@@ -74,27 +124,7 @@ public class Tablero extends Pane {
             this.getChildren().add(line);
     
         }
-     // Panel para mostrar textos (puntuaciones)
-        HBox paneTextScore = new HBox();
-        paneTextScore.setTranslateY(20);            
-        paneTextScore.setMinWidth(logica.puntuacionJ1);
-        paneTextScore.setAlignment(Pos.CENTER);
-        this.getChildren().add(paneTextScore);
-
-        // Texto de etiqueta para la puntuación
-        Text textTitleScore = new Text("Score: ");
-        textTitleScore.setFont(Font.font(TEXT_SIZE));
-        textTitleScore.setFill(Color.WHITE);
-        // Texto para la puntuación
-        Text textScore;
-        textScore = new Text("0");
-        textScore.setFont(Font.font(TEXT_SIZE));
-        textScore.setFill(Color.BLUE);
-
-        // Añadir los textos al panel reservado para ellos 
-        paneTextScore.setSpacing(10);
-        paneTextScore.getChildren().add(textTitleScore);
-        paneTextScore.getChildren().add(textScore);
+     
     }
 //String respuesta= String.valueof(respuesta)
 // Metodo para comprobar la respuesta    
@@ -110,10 +140,12 @@ public class Tablero extends Pane {
         if (Integer.parseInt(respuestaStr) == Logica.cuadriculaResp[fila-1][columna-1]){ 
             System.out.println("acierto");
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
+            alert.setTitle("¡Muy bien!");
             alert.setHeaderText(null);
             alert.setContentText("!Has acertado!");
-
+            Logica.variableResp = true;
+            logica.aumentarScore();
+            logica.aumentarScore2();
             alert.showAndWait();
         }
     };

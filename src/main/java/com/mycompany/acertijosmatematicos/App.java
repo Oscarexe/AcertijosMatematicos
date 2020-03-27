@@ -23,8 +23,8 @@ public class App extends Application {
         Tablero tablero = new Tablero();
         root.getChildren().add(tablero);
         
-        Logica logica = new Logica();
-        logica.mostrarConsola();
+        //Logica logica = new Logica();
+        Logica.mostrarConsola();
     }
 
     public static void main(String[] args) {
