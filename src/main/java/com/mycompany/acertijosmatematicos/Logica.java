@@ -5,7 +5,7 @@ import java.util.Random;
 public class Logica {
     
     static String [][] cuadricula = new String[Tablero.anchoTablero][Tablero.altoTablero];
-    static int [][] cuadriculaResp = new int[Tablero.anchoTablero][Tablero.altoTablero];
+    static double [][] cuadriculaResp = new double[Tablero.anchoTablero][Tablero.altoTablero];
     
     static char turnoJugador = '1';
     final char JUGADOR_1 = '1';
