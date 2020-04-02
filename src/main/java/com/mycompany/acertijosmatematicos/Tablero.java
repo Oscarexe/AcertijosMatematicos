@@ -5,6 +5,7 @@
  */
 package com.mycompany.acertijosmatematicos;
 
+import static com.mycompany.acertijosmatematicos.Logica.turnoJugador;
 import java.util.Optional;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -44,17 +45,22 @@ public class Tablero extends Pane {
            // this.getChildren().add(line);
             this.getChildren().add(line);                           
         }
+        
        
         // hacer que solo se pueda pinchar en la cuadricula
         this.setOnMouseClicked((MouseEvent mouseEvent) -> {
+            try{
             System.out.println("Mouse clicked X,Y: " +
-                    mouseEvent.getX() + " : " + mouseEvent.getY());
+                mouseEvent.getX() + " : " + mouseEvent.getY());
+                // hacer un if para controlar si no se pincha en el tablero ClicY <= tamañoficha * anchotablero y ClicX <= tamañoficha * altotablero
+
             int clicX = (int)mouseEvent.getX();
             columna = clicX / Carta.TAM_CUADRANTE;
             int clicY = (int)mouseEvent.getY();
             fila = clicY / Carta.TAM_CUADRANTE;
             System.out.println("Columna: " + columna);
             System.out.println("Fila: " + fila);
+            //this.getChildren().remove(/*entre la fila y la columna se saca*/)
             
             //mostrar al ususario una pantalla que muestre la operacion que tiene que realizar cuando pinche en una casilla
             String textoPregunta= (Logica.cuadricula[fila-1][columna-1]); //le resto -1 pq empieza en 0
@@ -68,11 +74,24 @@ public class Tablero extends Pane {
             System.out.println(respuesta); 
             
             comprobarRespuesta(columna, fila, respuesta);
-            
+
+
+
             logica.cambiarJugador();
+
+            //cambiarturno
+            mostrarTurnoPantalla();
+
             System.out.println("Turno del Jugador "+logica.turnoJugador);
-         
+            
+                   catch (Exception e) {
+            System.out.println("Something went wrong.");
+        }
+
         });
+       }
+
+
         // lineas Horizontales
       for(int i=1; i<altoTablero+ 2; i++) {
             Line line = new Line(Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(anchoTablero+1), Carta.TAM_CUADRANTE*i);
@@ -107,7 +126,7 @@ public class Tablero extends Pane {
         HBox paneTextScore2 = new HBox();
         paneTextScore2.setTranslateY(180);        
         paneTextScore2.setTranslateX(400);                        
-        paneTextScore2.setMinWidth(logica.puntuacionJ2);
+        paneTextScore2.setMinWidth(90);
         paneTextScore2.setAlignment(Pos.CENTER);
         this.getChildren().add(paneTextScore2);
 
@@ -148,6 +167,9 @@ public class Tablero extends Pane {
         paneTextScore3.setSpacing(10);
         paneTextScore3.getChildren().add(textTitleScore3);
         paneTextScore3.getChildren().add(turnoJugadorPane);
+        
+
+
      
     }
 // Metodo para comprobar la respuesta    
@@ -186,6 +208,10 @@ public class Tablero extends Pane {
                 
             }
         }    
+    }
+    public void mostrarTurnoPantalla(){
+        turnoJugadorPane.setText (String.valueOf(Logica.turnoJugador));
+
     }
 }
 

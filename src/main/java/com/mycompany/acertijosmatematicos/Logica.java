@@ -70,8 +70,12 @@ public class Logica {
         public void cambiarJugador() {
             if(turnoJugador == JUGADOR_1) {
                 turnoJugador = JUGADOR_2;
+               // Tablero.turnoJugadorPane.setText (String.valueOf(turnoJugador));
+                
             } else {
                     turnoJugador = JUGADOR_1;
+                   // Tablero.turnoJugadorPane.setText (String.valueOf(turnoJugador));
+
                 }
         }
 
@@ -87,6 +91,6 @@ public class Logica {
                 Tablero.textScore2.setText(String.valueOf(puntuacionJ2));
             }
         }
+                                                                           
 }
 
-// metodo para guardar en la logica si ha acertado o fallado

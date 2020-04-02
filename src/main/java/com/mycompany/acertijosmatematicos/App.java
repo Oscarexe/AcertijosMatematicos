@@ -43,4 +43,5 @@ hacer que no pueda pincharse fuera del tablero haciendo que, ClicY <= tamañofic
 cuando se pincha una carta que no pueda pincharse mas 
 hacer que el usuario pueda parametrizar el tablero desde el principio
 cambiar las cartas cuando se usan
+cambiar el texto de la cuadricula cuando se responde
 */
