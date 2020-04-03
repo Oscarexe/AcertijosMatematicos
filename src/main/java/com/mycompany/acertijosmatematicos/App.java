@@ -19,7 +19,7 @@ public class App extends Application {
         stage.show();
         
         Carta carta = new Carta();
-        
+        // alert para parametrizar tablero
         Tablero tablero = new Tablero();
         root.getChildren().add(tablero);
         
@@ -44,4 +44,5 @@ cuando se pincha una carta que no pueda pincharse mas
 hacer que el usuario pueda parametrizar el tablero desde el principio
 cambiar las cartas cuando se usan
 cambiar el texto de la cuadricula cuando se responde
+hacer una clase para parametrizar el tablero antes de empezar a jugar
 */

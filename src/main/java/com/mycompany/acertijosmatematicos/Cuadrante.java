@@ -1,4 +1,3 @@
-// creo que esta clase sobra pq esta duplicada en carta
 package com.mycompany.acertijosmatematicos;
 
 import javafx.scene.Group;
@@ -6,10 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
-/**
- *
- * @author Oscar
- */
+
 public class Cuadrante extends Group {
     static final short TAM_CUADRANTE= 40;
     Image interrogacion = new Image(getClass().getResourceAsStream("/Images/interrogacion.jpg"));

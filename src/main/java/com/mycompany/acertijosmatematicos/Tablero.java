@@ -5,7 +5,6 @@
  */
 package com.mycompany.acertijosmatematicos;
 
-import static com.mycompany.acertijosmatematicos.Logica.turnoJugador;
 import java.util.Optional;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -25,8 +24,8 @@ public class Tablero extends Pane {
     int columna;
     int contador1;
     int contador2;
-    static int anchoTablero= 5;
-    static int altoTablero = 5;
+    static int anchoTablero= 8;
+    static int altoTablero = 8;
     int TEXT_SIZE = 30;
         
     static Text textScore;
@@ -39,20 +38,26 @@ public class Tablero extends Pane {
 
         // lineas Verticales
          
-        for(int i=0; i<anchoTablero+ 2; i++) {
+        for(int i=0; i<altoTablero+ 2; i++) {
            // Line line = new Line(Cuadrante.TAM_CUADRANTE, Cuadrante.TAM_CUADRANTE*i, Cuadrante.TAM_CUADRANTE*7, Cuadrante.TAM_CUADRANTE*i);
-            Line line = new Line(Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(altoTablero+1));
+            Line line = new Line(Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(anchoTablero+1));
            // this.getChildren().add(line);
             this.getChildren().add(line);                           
         }
         
+        // lineas Horizontales
+        for(int i=1; i<anchoTablero+ 2; i++) {
+            Line line = new Line(Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(altoTablero+1), Carta.TAM_CUADRANTE*i);
+            this.getChildren().add(line);
+    
+        }
+        
        
-        // hacer que solo se pueda pinchar en la cuadricula
         this.setOnMouseClicked((MouseEvent mouseEvent) -> {
+            // try catch para los errores de cuando no se pincha en la cuadricula, cuando no se inserta resultado,,,
             try{
             System.out.println("Mouse clicked X,Y: " +
                 mouseEvent.getX() + " : " + mouseEvent.getY());
-                // hacer un if para controlar si no se pincha en el tablero ClicY <= tamañoficha * anchotablero y ClicX <= tamañoficha * altotablero
 
             int clicX = (int)mouseEvent.getX();
             columna = clicX / Carta.TAM_CUADRANTE;
@@ -61,6 +66,13 @@ public class Tablero extends Pane {
             System.out.println("Columna: " + columna);
             System.out.println("Fila: " + fila);
             //this.getChildren().remove(/*entre la fila y la columna se saca*/)
+            
+            if(Logica.cuadricula[fila][columna]== "Esta pregunta ya se ha respondido, elige otra"){
+                //mostrar alert diciendo que no se puede
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle(null);
+                alert.setHeaderText("¡Esta pregunta ya se ha respondido, elige otra!");
+            }
             
             //mostrar al ususario una pantalla que muestre la operacion que tiene que realizar cuando pinche en una casilla
             String textoPregunta= (Logica.cuadricula[fila-1][columna-1]); //le resto -1 pq empieza en 0
@@ -73,6 +85,8 @@ public class Tablero extends Pane {
             Optional <String> respuesta = textoPreguntaDialog.showAndWait();
             System.out.println(respuesta); 
             
+
+            
             comprobarRespuesta(columna, fila, respuesta);
 
 
@@ -84,20 +98,12 @@ public class Tablero extends Pane {
 
             System.out.println("Turno del Jugador "+logica.turnoJugador);
             
-                   catch (Exception e) {
+            }       catch (Exception e) {
             System.out.println("Something went wrong.");
         }
 
         });
-       }
-
-
-        // lineas Horizontales
-      for(int i=1; i<altoTablero+ 2; i++) {
-            Line line = new Line(Carta.TAM_CUADRANTE, Carta.TAM_CUADRANTE*i, Carta.TAM_CUADRANTE*(anchoTablero+1), Carta.TAM_CUADRANTE*i);
-            this.getChildren().add(line);
     
-        }
       
         // Panel para mostrar textos (puntuaciones)
         HBox paneTextScore = new HBox();
@@ -186,6 +192,8 @@ public class Tablero extends Pane {
         if (Double.valueOf(respuestaStr) == Logica.cuadriculaResp[fila-1][columna-1]){ 
             System.out.println("acierto");
             Alert alert = new Alert(AlertType.INFORMATION);
+            String textoRespondida= "Esta pregunta ya se ha respondido, elige otra";
+            Logica.cuadricula [fila-1][columna-1]= textoRespondida;
             alert.setTitle("¡Muy bien!");
             alert.setHeaderText(null);
             alert.setContentText("!Has acertado!");
@@ -198,8 +206,8 @@ public class Tablero extends Pane {
     
 // Metodo para dibujar el tablero     
     private void colocarCarta(){
-        for(int i=0; i<altoTablero; i++) {
-            for(int e=0; e<anchoTablero; e++) {
+        for(int i=0; i<anchoTablero; i++) {
+            for(int e=0; e<altoTablero; e++) {
                                                
                 Carta carta = new Carta();
                 carta.setLayoutX(Carta.TAM_CUADRANTE*e+ Carta.TAM_CUADRANTE);
