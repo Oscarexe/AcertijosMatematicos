@@ -1,6 +1,7 @@
 package com.mycompany.acertijosmatematicos;
 
 import java.util.Random;
+import javafx.scene.control.Alert;
 
 public class Logica {
     
@@ -64,7 +65,7 @@ public class Logica {
 
                 }
                 System.out.println(""); // esto es para que haya saltos de linea 
-            }        
+            }            
         }
         
         public void cambiarJugador() {
@@ -90,7 +91,6 @@ public class Logica {
                  puntuacionJ2+=1;
                 Tablero.textScore2.setText(String.valueOf(puntuacionJ2));
             }
-        }
-                                                                           
+        }                                                                                   
 }
 

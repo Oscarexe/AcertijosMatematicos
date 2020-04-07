@@ -24,9 +24,11 @@ public class Tablero extends Pane {
     int columna;
     int contador1;
     int contador2;
-    static int anchoTablero= 8;
-    static int altoTablero = 8;
+    static int anchoTablero= 7;
+    static int altoTablero = 7;
+    static int contadorRondas=0;
     int TEXT_SIZE = 30;
+    String textoRespondida= "Esta pregunta ya se ha respondido, elige otra";
         
     static Text textScore;
     static Text textScore2;
@@ -65,10 +67,14 @@ public class Tablero extends Pane {
             fila = clicY / Carta.TAM_CUADRANTE;
             System.out.println("Columna: " + columna);
             System.out.println("Fila: " + fila);
+            
             //this.getChildren().remove(/*entre la fila y la columna se saca*/)
             
-            if(Logica.cuadricula[fila][columna]== "Esta pregunta ya se ha respondido, elige otra"){
+            // creo que no esta entrando en este if
+            if(Logica.cuadricula[fila][columna].equals(textoRespondida) ){
                 //mostrar alert diciendo que no se puede
+                
+                
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle(null);
                 alert.setHeaderText("¡Esta pregunta ya se ha respondido, elige otra!");
@@ -95,8 +101,10 @@ public class Tablero extends Pane {
 
             //cambiarturno
             mostrarTurnoPantalla();
-
+            
             System.out.println("Turno del Jugador "+logica.turnoJugador);
+            System.out.println("Ronda numero:" + contadorRondas);
+            terminarJuego();
             
             }       catch (Exception e) {
             System.out.println("Something went wrong.");
@@ -192,7 +200,7 @@ public class Tablero extends Pane {
         if (Double.valueOf(respuestaStr) == Logica.cuadriculaResp[fila-1][columna-1]){ 
             System.out.println("acierto");
             Alert alert = new Alert(AlertType.INFORMATION);
-            String textoRespondida= "Esta pregunta ya se ha respondido, elige otra";
+            
             Logica.cuadricula [fila-1][columna-1]= textoRespondida;
             alert.setTitle("¡Muy bien!");
             alert.setHeaderText(null);
@@ -201,6 +209,7 @@ public class Tablero extends Pane {
             logica.aumentarScore();
             logica.aumentarScore2();
             alert.showAndWait();
+            contadorRondas++;
         }
     };
     
@@ -219,6 +228,17 @@ public class Tablero extends Pane {
     }
     public void mostrarTurnoPantalla(){
         turnoJugadorPane.setText (String.valueOf(Logica.turnoJugador));
+
+    }
+    
+    public void terminarJuego(){
+    // contador para cada vez que se pincha, cuando el contador llegue al total del tablero se acaba el juego
+        if(contadorRondas== altoTablero * anchoTablero){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(null);
+            alert.setHeaderText("El juego ha acabado");
+            System.out.println(contadorRondas);
+        }
 
     }
 }
