@@ -11,8 +11,8 @@ public class Logica {
     static char turnoJugador = '1';
     final char JUGADOR_1 = '1';
     final char JUGADOR_2 = '2';
-    int puntuacionJ1= 0;
-    int puntuacionJ2= 0;
+    static int puntuacionJ1= 0;
+    static int puntuacionJ2= 0;
     static boolean variableResp;
     // llenar todo de ecuaciones
     // dos matrices una para las preguntas y otra para las respuestas

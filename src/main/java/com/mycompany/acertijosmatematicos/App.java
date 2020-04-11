@@ -18,7 +18,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         
-        Carta carta = new Carta();
         // alert para parametrizar tablero
         Tablero tablero = new Tablero();
         root.getChildren().add(tablero);

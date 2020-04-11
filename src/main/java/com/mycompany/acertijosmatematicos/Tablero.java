@@ -24,8 +24,8 @@ public class Tablero extends Pane {
     int columna;
     int contador1;
     int contador2;
-    static int anchoTablero= 7;
-    static int altoTablero = 7;
+    static int anchoTablero= 6;
+    static int altoTablero = 6;
     static int contadorRondas=0;
     int TEXT_SIZE = 30;
     String textoRespondida= "Esta pregunta ya se ha respondido, elige otra";
@@ -70,10 +70,7 @@ public class Tablero extends Pane {
             
             //this.getChildren().remove(/*entre la fila y la columna se saca*/)
             
-            // creo que no esta entrando en este if
-            if(Logica.cuadricula[fila][columna].equals(textoRespondida) ){
-                //mostrar alert diciendo que no se puede
-                
+            if(Logica.cuadricula[fila][columna].equals(textoRespondida) ){                
                 
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle(null);
@@ -209,12 +206,15 @@ public class Tablero extends Pane {
             logica.aumentarScore();
             logica.aumentarScore2();
             alert.showAndWait();
+            //si la pregunta es acertada, el contador de rondas aumentara uno, 
+            //de lo contrario el contador no aumentara y la pregunta podrá volverse a contestar
             contadorRondas++;
         }
     };
     
 // Metodo para dibujar el tablero     
     private void colocarCarta(){
+        // Creamos un bucle dentro de otro para que genere un bucle de columnas
         for(int i=0; i<anchoTablero; i++) {
             for(int e=0; e<altoTablero; e++) {
                                                
@@ -232,12 +232,19 @@ public class Tablero extends Pane {
     }
     
     public void terminarJuego(){
-    // contador para cada vez que se pincha, cuando el contador llegue al total del tablero se acaba el juego
+    // contador para cada vez que se acierta, cuando el contador llegue al total de huecos tablero se acaba el juego
         if(contadorRondas== altoTablero * anchoTablero){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(null);
-            alert.setHeaderText("El juego ha acabado");
+            if (Logica.puntuacionJ1>Logica.puntuacionJ2){
+            alert.setHeaderText("El juego ha acabado y gana el Player 1");
             System.out.println(contadorRondas);
+            }
+            if (Logica.puntuacionJ1>Logica.puntuacionJ2){
+            alert.setHeaderText("El juego ha acabado y gana el Player 1");
+            System.out.println(contadorRondas);
+            }
+
         }
 
     }
